@@ -1,0 +1,45 @@
+<?php
+
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\ExpenseController;
+use App\Http\Controllers\API\IncomeController;
+use App\Http\Controllers\API\ItemController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::post('/income', [IncomeController::class, 'store']);
+    Route::get('/income', [IncomeController::class, 'index']);
+    Route::get('/income/report', [IncomeController::class, 'report']);
+
+    Route::post('/expense', [ExpenseController::class, 'store']);
+    Route::get('/expense', [ExpenseController::class, 'index']);
+    Route::get('/expense/report', [ExpenseController::class, 'report']);
+
+    Route::post('/item', [ItemController::class, 'store']);
+    Route::get('/item', [ItemController::class, 'index']);
+
+});
+
