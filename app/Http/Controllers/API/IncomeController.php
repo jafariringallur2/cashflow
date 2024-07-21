@@ -53,9 +53,10 @@ class IncomeController extends Controller
         $userId = Auth::id();
 
         // Retrieve incomes where created_for_id is the authenticated user's ID
-        $incomes = Income::leftJoin('items','item.id','incomes.item_id')
-        ->select(['incomes.*','item.name as item_name'])
-        ->where('created_for_id', $userId)->get();
+        $incomes = Income::leftJoin('items', 'items.id', '=', 'incomes.item_id')
+        ->select(['incomes.*', 'items.name as item_name'])
+        ->where('incomes.created_for_id', $userId)
+        ->get();
 
         // Return incomes as JSON response
         return response()->json($incomes);
