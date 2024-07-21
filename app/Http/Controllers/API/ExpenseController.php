@@ -59,6 +59,84 @@ class ExpenseController extends Controller
         return response()->json($expenses);
     }
 
+
+    
+    /**
+     * Update the specified expense record in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, $id)
+    {
+        // Validate incoming request
+        $request->validate([
+            'amount' => 'required|numeric',
+            'date' => 'required|date',
+            'item_id' => 'required|exists:items,id',
+            'note' => 'nullable|string',
+        ]);
+
+        // Get the authenticated user's ID
+        $userId = Auth::id();
+
+        // Find the expense by ID and check if it belongs to the authenticated user
+        $expense = Expense::where('id', $id)
+            ->where('created_for_id', $userId)
+            ->first();
+
+        if (!$expense) {
+            // Return a JSON response indicating that the expense was not found
+            return response()->json([
+                'message' => 'Expense not found.'
+            ], 404); // 404 Not Found status code
+        }
+
+        // Update the expense
+        $expense->amount = $request->input('amount');
+        $expense->date = $request->input('date');
+        $expense->item_id = $request->input('item_id');
+        $expense->note = $request->input('note');
+        $expense->save();
+
+        // Return the updated expense as JSON response
+        return response()->json($expense);
+    }
+
+    /**
+     * Remove the specified expense record from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete($id)
+    {
+        // Get the authenticated user's ID
+        $userId = Auth::id();
+
+        // Find the expense by ID and check if it belongs to the authenticated user
+        $expense = Expense::where('id', $id)
+            ->where('created_for_id', $userId)
+            ->first();
+
+        if (!$expense) {
+            // Return a JSON response indicating that the expense was not found
+            return response()->json([
+                'message' => 'Expense not found.'
+            ], 404); // 404 Not Found status code
+        }
+
+        // Delete the expense
+        $expense->delete();
+
+        // Return a JSON response indicating successful deletion
+        return response()->json([
+            'message' => 'Expense deleted successfully.'
+        ], 200); // 200 OK status code
+    }
+
+
     /**
      * Generate a report of total expenses within a specific date range.
      *

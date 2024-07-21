@@ -106,6 +106,20 @@ class ItemController extends Controller
             ], 404); // 404 Not Found status code
         }
 
+        $existingItem = Item::where('id','!=',$id)
+            ->where('name', $request->input('name'))
+            ->where('type', $request->input('type'))
+            ->where('created_for_id', $userId)
+            ->first();
+
+        if ($existingItem) {
+            // Return a JSON response indicating that the item already exists
+            return response()->json([
+                'message' => 'Duplicate item'
+            ], 409); // 409 Conflict status code
+        }
+
+
         // Update the item
         $item->name = $request->input('name');
         $item->type = $request->input('type');

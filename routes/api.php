@@ -32,10 +32,14 @@ Route::middleware('auth:api')->group(function () {
 
     Route::post('/income', [IncomeController::class, 'store']);
     Route::get('/income', [IncomeController::class, 'index']);
+    Route::put('/income/{id}', [IncomeController::class, 'update']);
+    Route::delete('/income/{id}', [IncomeController::class, 'delete']);
     Route::get('/income/report', [IncomeController::class, 'report']);
 
     Route::post('/expense', [ExpenseController::class, 'store']);
     Route::get('/expense', [ExpenseController::class, 'index']);
+    Route::put('/expense/{id}', [ExpenseController::class, 'update']);
+    Route::delete('/expense/{id}', [ExpenseController::class, 'delete']);
     Route::get('/expense/report', [ExpenseController::class, 'report']);
 
     Route::put('/item/{id}', [ItemController::class, 'update']);

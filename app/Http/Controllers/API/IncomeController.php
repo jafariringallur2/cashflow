@@ -59,6 +59,82 @@ class IncomeController extends Controller
         return response()->json($incomes);
     }
 
+
+    /**
+     * Update the specified income record in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, $id)
+    {
+        // Validate incoming request
+        $request->validate([
+            'amount' => 'required|numeric',
+            'date' => 'required|date',
+            'item_id' => 'required|exists:items,id',
+            'note' => 'nullable|string',
+        ]);
+
+        // Get the authenticated user's ID
+        $userId = Auth::id();
+
+        // Find the income by ID and check if it belongs to the authenticated user
+        $income = Income::where('id', $id)
+            ->where('created_for_id', $userId)
+            ->first();
+
+        if (!$income) {
+            // Return a JSON response indicating that the income was not found
+            return response()->json([
+                'message' => 'Income not found.'
+            ], 404); // 404 Not Found status code
+        }
+
+        // Update the income
+        $income->amount = $request->input('amount');
+        $income->date = $request->input('date');
+        $income->item_id = $request->input('item_id');
+        $income->note = $request->input('note');
+        $income->save();
+
+        // Return the updated income as JSON response
+        return response()->json($income);
+    }
+
+    /**
+     * Remove the specified income record from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete($id)
+    {
+        // Get the authenticated user's ID
+        $userId = Auth::id();
+
+        // Find the income by ID and check if it belongs to the authenticated user
+        $income = Income::where('id', $id)
+            ->where('created_for_id', $userId)
+            ->first();
+
+        if (!$income) {
+            // Return a JSON response indicating that the income was not found
+            return response()->json([
+                'message' => 'Income not found.'
+            ], 404); // 404 Not Found status code
+        }
+
+        // Delete the income
+        $income->delete();
+
+        // Return a JSON response indicating successful deletion
+        return response()->json([
+            'message' => 'Income deleted successfully.'
+        ], 200); // 200 OK status code
+    }
+
     /**
      * Generate a report of total income within a specific date range.
      *
