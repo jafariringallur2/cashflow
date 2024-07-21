@@ -38,6 +38,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/expense', [ExpenseController::class, 'index']);
     Route::get('/expense/report', [ExpenseController::class, 'report']);
 
+    Route::put('/item/{id}', [ItemController::class, 'update']);
+    Route::delete('/item/{id}', [ItemController::class, 'delete']);
     Route::post('/item', [ItemController::class, 'store']);
     Route::get('/item', [ItemController::class, 'index']);
 
