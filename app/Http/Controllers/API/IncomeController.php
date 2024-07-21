@@ -53,7 +53,7 @@ class IncomeController extends Controller
         $userId = Auth::id();
 
         // Retrieve incomes where created_for_id is the authenticated user's ID
-        $incomes = Income::where('created_for_id', $userId)->get();
+        $incomes = Income::with('item')->where('created_for_id', $userId)->get();
 
         // Return incomes as JSON response
         return response()->json($incomes);

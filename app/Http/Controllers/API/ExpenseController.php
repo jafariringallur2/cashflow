@@ -53,7 +53,7 @@ class ExpenseController extends Controller
         $userId = Auth::id();
 
         // Retrieve expenses where created_for_id is the authenticated user's ID
-        $expenses = Expense::where('created_for_id', $userId)->get();
+        $expenses = Expense::with('item')->where('created_for_id', $userId)->get();
 
         // Return expenses as JSON response
         return response()->json($expenses);
