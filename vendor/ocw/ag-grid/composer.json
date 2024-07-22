@@ -1,0 +1,21 @@
+{
+    "name": "ocw/ag-grid",
+    "description": "Ag-Grid datatable in laravel",
+    "type": "library",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+          "Ocw\\AgGrid\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ocw\\AgGrid\\AgGridServiceProvider"
+            ],
+            "aliases": {
+                "AgGrid": "Ocw\\Facades\\AgGrid"
+            }
+        }
+    }
+}
