@@ -2904,12 +2904,6 @@
                     "Ocw\\AgGrid\\": "src"
                 }
             },
-            "authors": [
-                {
-                    "name": "Ajeesh",
-                    "email": "ajeesh@onlinecheckwriter.com"
-                }
-            ],
             "description": "Ag-Grid datatable in laravel",
             "transport-options": {
                 "relative": true
