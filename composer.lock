@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eea4950e30ba2ae0698467c0fd80ffc3",
+    "content-hash": "b94906e26d9bc4fe08e75d7929d8cf8b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2879,6 +2879,41 @@
                 }
             ],
             "time": "2023-11-13T09:31:12+00:00"
+        },
+        {
+            "name": "ocw/ag-grid",
+            "version": "v1.5.1",
+            "dist": {
+                "type": "path",
+                "url": "packages/ag-grid",
+                "reference": "edcf4bcabb195704e94f867da16d64ff582efdb6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ocw\\AgGrid\\AgGridServiceProvider"
+                    ],
+                    "aliases": {
+                        "AgGrid": "Ocw\\Facades\\AgGrid"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ocw\\AgGrid\\": "src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Ajeesh",
+                    "email": "ajeesh@onlinecheckwriter.com"
+                }
+            ],
+            "description": "Ag-Grid datatable in laravel",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "opis/closure",

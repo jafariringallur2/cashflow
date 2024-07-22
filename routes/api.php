@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\DatatableController;
 use App\Http\Controllers\API\ExpenseController;
 use App\Http\Controllers\API\IncomeController;
 use App\Http\Controllers\API\ItemController;
@@ -29,6 +30,8 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('/datatable/{model}', [DatatableController::class, 'getData']);
 
     Route::post('/income', [IncomeController::class, 'store']);
     Route::get('/income', [IncomeController::class, 'index']);

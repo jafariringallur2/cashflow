@@ -59,4 +59,15 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'ocw/ag-grid' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Ocw\\AgGrid\\AgGridServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'AgGrid' => 'Ocw\\Facades\\AgGrid',
+    ),
+  ),
 );

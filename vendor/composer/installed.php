@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'fa4e6139936833f90c9429c8b9c72b5615c517c5',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -422,12 +422,12 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'fa4e6139936833f90c9429c8b9c72b5615c517c5',
             'dev_requirement' => false,
         ),
         'laravel/passport' => array(
@@ -662,6 +662,15 @@
             'install_path' => __DIR__ . '/../nyholm/psr7',
             'aliases' => array(),
             'reference' => 'aa5fc277a4f5508013d571341ade0c3886d4d00e',
+            'dev_requirement' => false,
+        ),
+        'ocw/ag-grid' => array(
+            'pretty_version' => 'v1.5.1',
+            'version' => '1.5.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ocw/ag-grid',
+            'aliases' => array(),
+            'reference' => 'edcf4bcabb195704e94f867da16d64ff582efdb6',
             'dev_requirement' => false,
         ),
         'opis/closure' => array(

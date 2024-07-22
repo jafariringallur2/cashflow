@@ -3757,6 +3757,44 @@
             "install-path": "../nyholm/psr7"
         },
         {
+            "name": "ocw/ag-grid",
+            "version": "v1.5.1",
+            "version_normalized": "1.5.1.0",
+            "dist": {
+                "type": "path",
+                "url": "packages/ag-grid",
+                "reference": "edcf4bcabb195704e94f867da16d64ff582efdb6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ocw\\AgGrid\\AgGridServiceProvider"
+                    ],
+                    "aliases": {
+                        "AgGrid": "Ocw\\Facades\\AgGrid"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Ocw\\AgGrid\\": "src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Ajeesh",
+                    "email": "ajeesh@onlinecheckwriter.com"
+                }
+            ],
+            "description": "Ag-Grid datatable in laravel",
+            "transport-options": {
+                "relative": true
+            },
+            "install-path": "../ocw/ag-grid"
+        },
+        {
             "name": "opis/closure",
             "version": "3.6.3",
             "version_normalized": "3.6.3.0",
