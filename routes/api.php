@@ -30,7 +30,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-
+    Route::post('logout', [AuthController::class, 'logout']);
     Route::post('/datatable/{model}', [DatatableController::class, 'getData']);
 
     Route::post('/income', [IncomeController::class, 'store']);
