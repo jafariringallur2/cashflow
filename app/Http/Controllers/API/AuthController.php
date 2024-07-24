@@ -16,11 +16,11 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return response()->json(['message' => $validator->errors()->first()], 422);
         }
 
         $user = User::create([
@@ -29,7 +29,19 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+        $token->expires_at = now()->addHours(10);
+        $token->save();
+
+        return response()->json([
+            'success' => true,
+            'token' => $tokenResult->accessToken,
+            'user' => [
+                'name' => $user->name,
+                'email' => $user->email,
+            ]
+        ]);
     }
 
     public function login(Request $request)
