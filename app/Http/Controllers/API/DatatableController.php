@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Models\Income;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Ocw\AgGrid\Facades\AgGrid;
@@ -26,6 +27,10 @@ class DatatableController extends Controller
             ->where('expenses.created_for_id', $userId);
     
             $ag = AgGrid::of($expenses)->make();
+            return $ag;
+        }elseif($model == "item"){
+            $items = Item::where('created_for_id', $userId);
+            $ag = AgGrid::of($items)->make();
             return $ag;
         }
 
