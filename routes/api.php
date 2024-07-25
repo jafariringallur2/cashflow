@@ -5,6 +5,7 @@ use App\Http\Controllers\API\DatatableController;
 use App\Http\Controllers\API\ExpenseController;
 use App\Http\Controllers\API\IncomeController;
 use App\Http\Controllers\API\ItemController;
+use App\Http\Controllers\API\ReportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,9 @@ Route::middleware('auth:api')->group(function () {
     });
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('/datatable/{model}', [DatatableController::class, 'getData']);
+
+    Route::post('/report', [ReportController::class, 'getReport']);
+    Route::post('/chart-data', [ReportController::class, 'getChartData']);
 
     Route::post('/income', [IncomeController::class, 'store']);
     Route::get('/income', [IncomeController::class, 'index']);
